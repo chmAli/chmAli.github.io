@@ -1,0 +1,198 @@
+/* Muhammad Ali Shan — portfolio. Hand-editable, no build step. */
+:root {
+  --bg: #faf8f4;
+  --surface: #ffffff;
+  --ink: #171d2e;
+  --ink-soft: #4a5266;
+  --muted: #8a91a3;
+  --accent: #c2570b;
+  --accent-bright: #d97706;
+  --accent-soft: #faeedd;
+  --line: #e8e3d8;
+  --code: #f1ede4;
+  --shadow: 0 10px 30px -12px rgba(23, 29, 46, 0.14);
+  --maxw: 760px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1220;
+    --surface: #161b2c;
+    --ink: #edeef4;
+    --ink-soft: #b4bac9;
+    --muted: #79819a;
+    --accent: #f0a04b;
+    --accent-bright: #f5b366;
+    --accent-soft: #2b2113;
+    --line: #232a40;
+    --code: #1c2337;
+    --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1220;
+  --surface: #161b2c;
+  --ink: #edeef4;
+  --ink-soft: #b4bac9;
+  --muted: #79819a;
+  --accent: #f0a04b;
+  --accent-bright: #f5b366;
+  --accent-soft: #2b2113;
+  --line: #232a40;
+  --code: #1c2337;
+  --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+/* note: no global scroll-behavior:smooth — it animates scroll restoration on refresh.
+   Smooth scrolling for nav clicks is handled in the script at the bottom of index.html. */
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16.5px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+/* top hairline in accent — small, deliberate signature */
+body::before {
+  content: ""; display: block; height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-bright) 60%, transparent);
+}
+main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+h1, h2.display, .case h3, .hero .role {
+  font-family: "Fraunces", Georgia, serif;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- header ---------- */
+header {
+  max-width: var(--maxw); margin: 0 auto; padding: 26px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.logo { font-family: "Fraunces", Georgia, serif; font-weight: 600; color: var(--ink); font-size: 18px; }
+nav { display: flex; gap: 22px; align-items: center; }
+nav a { color: var(--ink-soft); font-size: 14.5px; font-weight: 500; }
+nav a:hover { color: var(--accent); text-decoration: none; }
+#theme-toggle {
+  background: none; border: 1px solid var(--line); border-radius: 10px;
+  width: 34px; height: 34px; cursor: pointer; color: var(--ink-soft); font-size: 15px;
+  display: grid; place-items: center; transition: all .15s ease;
+}
+#theme-toggle:hover { border-color: var(--accent); color: var(--accent); transform: rotate(180deg); }
+
+/* ---------- hero ---------- */
+.hero { padding: 64px 0 48px; }
+.hero-row { display: flex; align-items: center; gap: 40px; }
+.hero-text { flex: 1; min-width: 0; }
+.hero .avatar {
+  width: 168px; height: 168px; border-radius: 28px; object-fit: cover;
+  border: 1px solid var(--line); box-shadow: var(--shadow);
+  transform: rotate(2.5deg); flex-shrink: 0;
+}
+@media (max-width: 680px) {
+  .hero-row { flex-direction: column-reverse; align-items: flex-start; }
+  .hero .avatar { width: 108px; height: 108px; transform: none; }
+}
+.hero h1 {
+  font-size: 52px; font-weight: 640; letter-spacing: -0.02em; line-height: 1.08;
+  font-variation-settings: "opsz" 60;
+}
+.hero .role {
+  margin-top: 14px; font-size: 23px; color: var(--accent); font-weight: 500;
+  font-style: italic; letter-spacing: -0.01em;
+}
+.hero .sub { margin-top: 20px; color: var(--ink-soft); max-width: 58ch; font-size: 17.5px; }
+.hero .meta { margin-top: 24px; color: var(--muted); font-size: 14.5px; }
+.hero .links { margin-top: 12px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 15px; font-weight: 500; }
+
+/* client strip */
+.clients {
+  margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em;
+}
+.clients b { color: var(--ink-soft); font-weight: 600; letter-spacing: 0.14em; }
+
+/* ---------- sections ---------- */
+section { padding: 44px 0; }
+section + section { border-top: 1px solid var(--line); }
+h2 {
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--muted); font-weight: 600; margin-bottom: 30px;
+  display: flex; align-items: center; gap: 12px;
+}
+h2::before { content: ""; width: 22px; height: 2px; background: var(--accent); }
+
+/* ---------- now box ---------- */
+.now-box {
+  background: var(--accent-soft); border-radius: 14px; padding: 20px 24px;
+  color: var(--ink-soft); border: 1px solid var(--line);
+}
+.now-box strong { color: var(--accent); }
+
+/* ---------- case studies ---------- */
+.case {
+  padding: 26px 24px; margin: 0 -24px; border-radius: 16px;
+  transition: background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.case:hover { background: var(--surface); box-shadow: var(--shadow); transform: translateY(-1px); }
+.case + .case { margin-top: 4px; }
+.case h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.case h3 a { color: var(--ink); }
+.case h3 a:hover { color: var(--accent); text-decoration: none; }
+.case .when { color: var(--muted); font-size: 14px; margin-left: 10px; font-weight: 400; font-family: "Inter", sans-serif; }
+.case p { margin-top: 10px; color: var(--ink-soft); max-width: 62ch; }
+.case .tags { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+.tag {
+  font-size: 12.5px; color: var(--ink-soft); background: var(--code);
+  padding: 4px 12px; border-radius: 100px; font-weight: 500;
+}
+.tag.hot { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.num { color: var(--ink); font-weight: 650; }
+
+/* screenshot slots — drop images in shots/ and they appear; missing images hide themselves */
+.shot {
+  margin-top: 16px; border-radius: 12px; border: 1px solid var(--line);
+  box-shadow: var(--shadow); max-width: 100%; display: block;
+}
+
+/* ---------- timeline ---------- */
+.job { display: grid; grid-template-columns: 140px 1fr; gap: 20px; padding: 16px 0; position: relative; }
+.job .dates { color: var(--muted); font-size: 13.5px; padding-top: 4px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.job h3 { font-size: 16.5px; font-weight: 600; font-family: "Inter", sans-serif; }
+.job .org { color: var(--accent); font-size: 14px; font-weight: 500; margin-top: 1px; }
+.job p { margin-top: 6px; color: var(--ink-soft); font-size: 15px; max-width: 58ch; }
+@media (max-width: 600px) {
+  .job { grid-template-columns: 1fr; gap: 2px; }
+  .hero h1 { font-size: 38px; }
+  .hero .role { font-size: 19px; }
+  .case { padding: 20px 16px; margin: 0 -16px; }
+}
+
+/* ---------- beyond software ---------- */
+.earlier { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.earlier .item {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 18px 20px; transition: box-shadow .18s ease, transform .18s ease;
+}
+.earlier .item:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.earlier .item strong { font-size: 15px; display: block; color: var(--ink); margin-bottom: 4px; }
+.earlier .item span { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+@media (max-width: 600px) { .earlier { grid-template-columns: 1fr; } }
+
+/* ---------- writing ---------- */
+.post { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+.post:last-of-type { border-bottom: none; }
+.post .t { color: var(--ink); font-weight: 500; }
+.post .d { color: var(--muted); font-size: 14px; white-space: nowrap; padding-top: 2px; }
+.soon { color: var(--muted); font-style: italic; font-weight: 400; }
+
+.contact p { color: var(--ink-soft); max-width: 58ch; }
+
+footer {
+  max-width: var(--maxw); margin: 0 auto; padding: 36px 24px 52px;
+  border-top: 1px solid var(--line); color: var(--muted); font-size: 14px;
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
