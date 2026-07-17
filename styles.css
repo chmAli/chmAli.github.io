@@ -67,9 +67,15 @@ h1, h2.display, .case h3, .hero .role {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-/* ---------- header ---------- */
+/* ---------- header (sticky, frosted) ---------- */
+.header-wrap {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
 header {
-  max-width: var(--maxw); margin: 0 auto; padding: 26px 24px;
+  max-width: var(--maxw); margin: 0 auto; padding: 18px 24px;
   display: flex; justify-content: space-between; align-items: center;
 }
 .logo { font-family: "Fraunces", Georgia, serif; font-weight: 600; color: var(--ink); font-size: 18px; }
@@ -116,7 +122,7 @@ nav a:hover { color: var(--accent); text-decoration: none; }
 .clients b { color: var(--ink-soft); font-weight: 600; letter-spacing: 0.14em; }
 
 /* ---------- sections ---------- */
-section { padding: 44px 0; }
+section { padding: 44px 0; scroll-margin-top: 72px; }
 section + section { border-top: 1px solid var(--line); }
 h2 {
   font-size: 13px; text-transform: uppercase; letter-spacing: 0.16em;
